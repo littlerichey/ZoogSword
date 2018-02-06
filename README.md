@@ -3,4 +3,4 @@
 
 ### You are the great hero Zoog, armed with the great sword anatak you must defend the great orb of erehps.
 
-Use the arrow keys to switch directions to face you foes, press space to swing your sword.
+Use the d and a to switch directions to face you foes, press space to swing your sword.
