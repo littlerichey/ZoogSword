@@ -1,8 +1,6 @@
-## Orb Defense Game
+# Zoog Sword
 ![alt text](https://littlerichey.github.io/Programming1Portfolio2016-17/images/hack.png )
 
-[code](https://github.com/littlerichey/Programming1Portfolio2016-17/tree/master/hacknslash)
+### You are the great hero Zoog, armed with the great sword anatak you must defend the great orb of erehps.
 
-A simple defense game where you you the left and right arrows to switch side and space to attack. Faster enemies appear at a higher rate as you go on as to increase the difficulty thoughout time.
-
-[back](https://littlerichey.github.io/Programming1Portfolio2016-17/)
+Use the arrow keys to switch directions to face you foes, press space to swing your sword.
