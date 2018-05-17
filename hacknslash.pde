@@ -1,4 +1,4 @@
-int r = 50, g = 200, b = 255, score= 0, l = 1, h = 8, i = 0, t, tt, u; //<>//
+int r = 50, g = 200, b = 255, score= 0, l = 3, h = 8, i = 0, t, tt, u; //<>//
 float frames = 0;
 boolean day = true, done = false, p;
 Mob m[] = new Mob[100000000];
@@ -6,7 +6,7 @@ P1 p1 = new P1(450, 550, color(0));
 void setup() {
   size(1000, 200);
   background(75, 200, 255);
-  frameRate(20);
+  frameRate(40);
 }
 
 void draw() {
@@ -21,6 +21,9 @@ void draw() {
         if (r <= 0) {
           day = false;
           h += 1;
+          if(h%6 ==0){
+            l+=3;
+          }
         }
       } else {
         r+= 1;
@@ -29,6 +32,9 @@ void draw() {
         if (b >= 255) {
           day = true;
           h += 1;
+          if(h%6 ==0){
+            l+=3;
+          }
         }
       }
     }
@@ -46,16 +52,10 @@ void draw() {
     textSize(30);
     text(score, 5, 25);
     p1.display();
-    if (frames/30 == int(frames/30)) {
+    if (frames/50 == int(frames/50)) {
       tt = int(random(l, h));
-      if (tt >= 8) {
-        t = 3;
-      } else if (tt >= 4) {
-        t = 2;
-      } else {
-        t = 1;
-      }
-      if (int(random(1, 2.5)) == 2) {
+      t = tt/3;
+      if (int(random(1, 2.7)) == 2) {
         p = true;
       } else {
         p = false;

@@ -1,8 +1,9 @@
 class P1 {
-  int l1, l2, x, y, kx, kx2, t = 0;
+  int l1, l2, x, y, kx, kx2, t = 0, ti = 1;
   color c;
-  boolean right = false, up = true, ld, rd;
+  boolean right = false, up = false, ld, rd;
   P1 (int l1, int l2, color c) {
+    keyCode=1;
     this.l1 = l1;
     this.l2 = l2;
     this.x = l1;
@@ -77,15 +78,15 @@ class P1 {
     }
   }
   void move() {
-    if (keyCode == 'd' || keyCode == 'D') {
+    if (keyCode == 'd' || keyCode == 'D' || keyCode == RIGHT) {
       right = true;
       x = l2;
-    } else if (keyCode == 'a' || keyCode == 'A') {
+    } else if (keyCode == 'a' || keyCode == 'A' || keyCode == LEFT) {
       right = false;
       x = l1;
-    } else if (keyCode == ' ') {
+      
+    }/* else if ((keyCode > 32 || keyCode < 32)) {
       up = false;
-
       t++;
       if (t>=4) {
         up = true;
@@ -93,7 +94,13 @@ class P1 {
         t = 00;
       }
     } else {
-      up = true;
-    }
+      t += ti;
+      if (t>=4) {
+        up = false;
+        ti *= -1;
+      }else{
+        up = true;
+      }
+    }*/
   }
 }
