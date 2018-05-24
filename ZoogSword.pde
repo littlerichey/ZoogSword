@@ -1,7 +1,7 @@
-int r = 50, g = 200, b = 254, score= 0, l = 3, h = 8, i = 0, t, tt, u, sr=0, sb=0, sg=0; //<>//
+int r = 50, g = 200, b = 254, score= 0, l = 3, h = 8, i = 0, t, tt, u, sr=0, sb=0, sg=0, freq =50; //<>//
 float frames = 0;
 boolean day = true, done = false, p, pick = true, start = false;
-Mob m[] = new Mob[100000000];
+ArrayList<Mob> m = new ArrayList();
 P1 p1;
 Button red = new Button(10, 100);
 Button green = new Button(10, 120);
@@ -58,12 +58,15 @@ void draw() {
     }
   } else if (!done) {
     background(r, g, b);
-    frames += 1;
+    frames ++;
     if (frames%8 == 0) {
-      if (r%25 == 0) {
+      if (frames%600 == 0) {
         h += 1;
         if (h%6 ==0) {
           l+=3;
+          if(h%4==0){
+            freq--;
+          }
         }
       }
       if (day) {
@@ -101,19 +104,24 @@ void draw() {
     textSize(30);
     text(score, 5, 25);
     p1.display();
-    if (frames/50 == int(frames/50)) {
+    if (frames%freq == 0) {
       tt = int(random(l, h));
       t = tt/3;
-      if (int(random(1, 2.7)) == 2) {
+      if (int(random(2))%2 == 0) {
         p = true;
       } else {
         p = false;
       }
-      m[i] =new Mob(t, p);
+      m.add(new Mob(t, p));
       i++;
     }
-    for (int d = 0; d<i; d++) { 
-      m[d].display();
+    for (int d = 0; d<i; d++) {
+      if(m.get(d).die){
+        m.remove(d);
+        i--;
+      }
+      m.get(d).display();
+      
     }
   } else {
     background(0);
