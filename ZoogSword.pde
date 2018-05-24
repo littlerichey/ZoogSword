@@ -1,4 +1,4 @@
-int r = 50, g = 200, b = 255, score= 0, l = 3, h = 8, i = 0, t, tt, u, sr=0, sb=0, sg=0; //<>//
+int r = 50, g = 200, b = 254, score= 0, l = 3, h = 8, i = 0, t, tt, u, sr=0, sb=0, sg=0; //<>//
 float frames = 0;
 boolean day = true, done = false, p, pick = true, start = false;
 Mob m[] = new Mob[100000000];
@@ -7,9 +7,9 @@ Button red = new Button(10, 100);
 Button green = new Button(10, 120);
 Button blue = new Button(10, 140);
 Button go = new Button(275, 100).asOp(50, 50, "Go");
-color shirt = color(sr,sb,sg);
+color shirt = color(sr, sb, sg);
 void setup() {
-  size(335,160);
+  size(335, 160);
   surface.setResizable(true);  
   background(255);
   frameRate(40);
@@ -21,7 +21,7 @@ void draw() {
       p1 = new P1(450, 550, shirt);
       surface.setSize(1000, 200);
       pick = false;
-    }else{
+    } else {
       rectMode(CORNER);
       red.display();
       green.display();
@@ -29,58 +29,60 @@ void draw() {
       go.display();
       noStroke();
       fill(shirt);
-      rect(0,0,width,90);
-      fill(255-sr,255-sg,255-sb);
-      text("Pick Your Hero's Color",width/2,45);
-      for(int i = 0; i<=255; i++){
-        fill(i,0,0);
-        rect(i+10,100,1,10);
-        fill(0,i,0);
-        rect(i+10,120,1,10);
-        fill(0,0,i);
-        rect(i+10,140,1,10);
+      rect(0, 0, width, 90);
+      fill(255-sr, 255-sg, 255-sb);
+      text("Pick Your Hero's Color", width/2, 45);
+      for (int i = 0; i<=255; i++) {
+        fill(i, 0, 0);
+        rect(i+10, 100, 1, 10);
+        fill(0, i, 0);
+        rect(i+10, 120, 1, 10);
+        fill(0, 0, i);
+        rect(i+10, 140, 1, 10);
       }
-      if(mousePressed){
-        if(red.over){
+      if (mousePressed) {
+        if (red.over) {
           sr = mouseX-10;
         }
-        if(green.over){
+        if (green.over) {
           sg = mouseX-10;
         }
-        if(blue.over){
+        if (blue.over) {
           sb = mouseX-10;
         }
-        if(go.over){
-         start = true;
+        if (go.over) {
+          start = true;
         }
       }
-      shirt = color(sr,sg,sb);
+      shirt = color(sr, sg, sb);
     }
   } else if (!done) {
     background(r, g, b);
     frames += 1;
-    if (frames/13 == int(frames/13)) {
+    if (frames%8 == 0) {
+      if (r%25 == 0) {
+        h += 1;
+        if (h%6 ==0) {
+          l+=3;
+        }
+      }
       if (day) {
-        r -= 1;
-        g-= 3;
-        b-= 3;
+        if (frames%24==0) {
+          r -= 1;
+        }
+        g-= 1;
+        b-= 1;
         if (r <= 0) {
           day = false;
-          h += 1;
-          if (h%6 ==0) {
-            l+=3;
-          }
         }
       } else {
-        r+= 1;
-        g+= 3;
-        b+= 3;
-        if (b >= 255) {
+        if (frames%24==0) {
+          r += 1;
+        }
+        g+= 1;
+        b+= 1;
+        if (r >= 50) {
           day = true;
-          h += 1;
-          if (h%6 ==0) {
-            l+=3;
-          }
         }
       }
     }
