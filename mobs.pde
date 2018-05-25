@@ -1,8 +1,36 @@
 class Mob {
-  int type, x, y, dx, w, speed;
+  int type, x, y, dx, w, speed, col;
   boolean die = false;
   boolean r = true;
-  int red = 0, g = 0, b = 0; 
+  int red = 0, g = 0, b = 0;
+  color c[] = new color[]{
+color(0,255,0),
+color(0,0,255),
+color(255,0,0),
+color(255,255,0),
+color(255,0,255),
+color(0,255,255),
+color(255),
+color(0,0,0),
+color(255,150,0),
+color(255,0,150),
+color(0,255,150),
+color(150,255,0),
+color(150,0,255),
+color(0,150,255),
+color(255,150,150),
+color(150,255,150),
+color(150,150,255),
+color(50),
+color(100),
+color(150),
+color(200),
+color(50,100,200),
+color(100,200,50),
+color(200,50,100),
+color(50,200,100),
+color(100,50,200),
+color(200,100,50),};
   Mob(int type, boolean x) {
     this.type = type;
     if (x) {
@@ -14,15 +42,10 @@ class Mob {
     y=135;
     w = 35;
     speed = type;
-    while (type>=0) {
-      if (type%3 == 1) {
-        g += 255;
-      } else if (type%3 == 2) {
-        b += 255;
-      } else if (type%3 == 0) {
-        red += 255;
-      }
-      type-=4;
+    col = type;
+    col-=1;
+    while(col>=c.length){
+      col-=c.length;
     }
   }
 
@@ -32,7 +55,7 @@ class Mob {
     if (!die) {
       stroke(0);
 
-      fill(red, g, b);
+      fill(c[col]);
       ellipse(x, y, w, w);
       line(x+w/4, y+w/2.25, x+w/4, height-40);
       line(x-w/4, y+w/2.25, x-w/4, height-40);

@@ -120,7 +120,9 @@ void draw() {
         m.remove(d);
         i--;
       }
-      m.get(d).display();
+      if(m.size()>d){
+        m.get(d).display();
+      }
     }
   } else {
     background(0);
