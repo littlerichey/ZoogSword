@@ -1,5 +1,4 @@
-int r = 50, g = 200, b = 254, score= 0, l = 3, h = 8, i = 0, t, tt, u, sr=0, sb=0, sg=0, freq =50; //<>//
-float frames = 0;
+int r = 50, g = 200, b = 254, score= 0, l = 3, h = 8, i = 0, t, tt, u, sr=0, sb=0, sg=0, freq =50, frames = 0; //<>//
 boolean day = true, done = false, p, pick = true, start = false;
 ArrayList<Mob> m = new ArrayList();
 P1 p1;
@@ -7,6 +6,7 @@ Button red = new Button(10, 100);
 Button green = new Button(10, 120);
 Button blue = new Button(10, 140);
 Button go = new Button(275, 100).asOp(50, 50, "Go");
+Button replay = new Button(450, 100).asOp(100, 50, "Replay");
 color shirt = color(sr, sb, sg);
 void setup() {
   size(335, 160);
@@ -64,7 +64,7 @@ void draw() {
         h += 1;
         if (h%6 ==0) {
           l+=3;
-          if(h%4==0){
+          if (h%4==0) {
             freq--;
           }
         }
@@ -116,17 +116,25 @@ void draw() {
       i++;
     }
     for (int d = 0; d<i; d++) {
-      if(m.get(d).die){
+      if (m.get(d).die) {
         m.remove(d);
         i--;
       }
       m.get(d).display();
-      
     }
   } else {
     background(0);
     fill(255, 0, 0);
     textAlign(CENTER, TOP);
     text("Game Over" + "\n Score: " +score, width/2, 10);
+    replay.display();
+    if (mousePressed && replay.over) {
+      r = 50; g = 200; b = 254; score= 0; l = 3; h = 8; i = 0; sr=0; sb=0; sg=0; freq =50;
+      frames = 0;
+      day = true; done = false; pick = true; start = false;
+      m.clear();
+      surface.setSize(335,160);
+      background(255);
+    }
   }
 }
