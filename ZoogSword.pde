@@ -64,9 +64,8 @@ void draw() {
         h += 1;
         if (h%6 ==0) {
           l+=3;
-          if (h%4==0) {
-            freq--;
-          }
+          freq--;
+          println("freq: " + freq);
         }
       }
       if (day) {
@@ -105,8 +104,10 @@ void draw() {
     text(score, 5, 25);
     p1.display();
     if (frames%freq == 0) {
+      println(frames-tt);
       tt = int(random(l, h));
       t = tt/3;
+      tt = frames;
       if (int(random(2))%2 == 0) {
         p = true;
       } else {
@@ -120,7 +121,7 @@ void draw() {
         m.remove(d);
         i--;
       }
-      if(m.size()>d){
+      if (m.size()>d) {
         m.get(d).display();
       }
     }
@@ -131,11 +132,24 @@ void draw() {
     text("Game Over" + "\n Score: " +score, width/2, 10);
     replay.display();
     if (mousePressed && replay.over) {
-      r = 50; g = 200; b = 254; score= 0; l = 3; h = 8; i = 0; sr=0; sb=0; sg=0; freq =50;
+      r = 50; 
+      g = 200; 
+      b = 254; 
+      score= 0; 
+      l = 3; 
+      h = 8; 
+      i = 0; 
+      sr=0; 
+      sb=0; 
+      sg=0; 
+      freq =50;
       frames = 0;
-      day = true; done = false; pick = true; start = false;
+      day = true; 
+      done = false; 
+      pick = true; 
+      start = false;
       m.clear();
-      surface.setSize(335,160);
+      surface.setSize(335, 160);
       background(255);
     }
   }
